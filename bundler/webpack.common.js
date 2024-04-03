@@ -1,11 +1,11 @@
 const path = require('path') //Переменная пути
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
     //это инструкция для вебпака, он работает только со скриптами javascript
     entry: './src/index.js', // Точка входа для сборки проекта, тут он смотрит его зависимости и подтягивает их тоже
     output: {
-        path: path.resolve(__dirname, './dist'), //Папка куда высрется итоговая портянка
+        path: path.resolve(__dirname, '../dist'), //Папка куда высрется итоговая портянка
         filename: '[name].[contenthash].js', //имя выходного файла, JS ваще поебать как его называть, это все равно подключится само в HTML
     },
     module: {
@@ -30,22 +30,10 @@ module.exports = {
             template: './src/template.html', //Файл на входе
             filename: 'index.html', // название выходного файла по умолчанию INDEX.HTML
         }),
-        new CopyPlugin({ //плагин для копирования статических файлов
+        new CopyWebpackPlugin({ //плагин для копирования статических файлов
             patterns: [
-                { from: './src/static/', to: './static'}
+                { from: './static/', to: './static'}
             ]
         }),      
     ],
-    devServer: {
-        static: {
-        directory: path.join(__dirname, 'dist'), // Каталог для статики
-        },
-        port: 666, //Порт на локалхосте
-        open: true, // Автоматически открывать браузер
-        // hot: true, // Горячая загрузка модулей?
-    },
-    
-    devtool: "source-map",
-    // mode: 'development', // Режим сборки
-    mode: 'production', // Режим сборки
 }
