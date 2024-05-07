@@ -27,7 +27,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({ //Плагин для переваривания HTML
             // favicon: "./src/images/favicon.svg", // Подключаем иконку
-            template: './src/template.html', //Файл на входе
+            template: './src/index.html', //Файл на входе
             filename: 'index.html', // название выходного файла по умолчанию INDEX.HTML
         }),
         new CopyWebpackPlugin({ //плагин для копирования статических файлов
