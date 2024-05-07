@@ -1,20 +1,18 @@
+// это доп плагин Threejs для управления камерой
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Vector3 } from 'three';
 
 function createControls(camera, canvas) {
   const controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.5;
-  controls.tick = () => controls.update();
-  // move the camera
-  camera.position.set(10,0,0);
-
-  // and/or rotate the camera
-  camera.rotation.set(210.0, 90, 90);
-  controls.listenToKeyEvents(window);
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 10;
-  // then tell the controls to update
-  controls.update();
+  // движение камеры
+  const target = new Vector3(0, 0, 0);
+  controls.target = target;
+  // controls.autoRotate = true;
+  // controls.autoRotateSpeed = -6;
+  // внутренний метод для обновления позиции
+  controls.tick = (delta) => {
+    controls.update(delta);
+  }
   return controls;
 }
 export { createControls };

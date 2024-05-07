@@ -2,15 +2,12 @@ import { PerspectiveCamera } from 'three';
 
 function createCamera() {
   const camera = new PerspectiveCamera(
-    35, // fov = Field Of View
-    1, // aspect ratio (dummy value)
-    0.1, // near clipping plane
-    100, // far clipping plane
+    90, // Поле зрения
+    1, // соотношение сторон фективное? потом пересчитаем в зависимости от размера экрана
+    0.1, // Ближайшая дистанция отсечения
+    100, // Дальняя точка отсечения
   );
-
-  // move the camera back so we can view the scene
-  camera.position.set(0, 0, 10);
-
+  camera.position.set(0,0,-4);
   return camera;
 }
 
